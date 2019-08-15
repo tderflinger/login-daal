@@ -30,8 +30,8 @@ The mock consists of this component:
 
 ## Future Plans
 
-- Make Login Daal configurable
-- Provide a real backend
+- make Login Daal configurable
+- provide a real backend
 - 2FA authentication
 - support for Docker
 - deployment support
