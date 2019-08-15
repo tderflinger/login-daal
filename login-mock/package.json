@@ -1,0 +1,16 @@
+{
+  "name": "login-mock",
+  "version": "0.1.0",
+  "description": "The mock for Login Daal.",
+  "main": "json-server-http.js",
+  "scripts": {
+    "develop": "node json-server-http.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "json-server": "^0.15.0"
+  }
+}
