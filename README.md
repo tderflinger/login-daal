@@ -1,5 +1,7 @@
 # Login Daal
 
+<img src="./daal-lentils.jpg" width="150px">
+
 Login Daal is an end-to-end login solution for web applications.
 Many web applications need a user login and registration solution.
 Often, this is invented over and over again. You can use Login Daal
