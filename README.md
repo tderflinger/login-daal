@@ -39,3 +39,8 @@ The mock consists of this component:
 - 2FA authentication
 - support for Docker
 - deployment support
+
+## Thanks to
+
+- Ulrike Thiel for the screen designs
+- PDPics for the image of the lentils
