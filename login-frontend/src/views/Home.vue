@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <LoginDialog></LoginDialog>
+    <login-dialog></login-dialog>
   </div>
 </template>
 

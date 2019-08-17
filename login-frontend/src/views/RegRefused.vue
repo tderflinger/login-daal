@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <RegisterRefusedDialog></RegisterRefusedDialog>
+    <register-refused-dialog></register-refused-dialog>
   </div>
 </template>
 

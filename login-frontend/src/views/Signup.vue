@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <SignupDialog></SignupDialog>
+    <signup-dialog></signup-dialog>
   </div>
 </template>
 

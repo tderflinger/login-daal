@@ -29,6 +29,10 @@ export default new Router({
     {
       path: '/success',
       component: () => import('./views/SuccessLogin.vue')
+    },
+    {
+      path: '/reset',
+      component: () => import('./views/PasswordReset.vue')
     }
   ]
 });

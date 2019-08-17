@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import RegisterConfirmationDialog from "../components/RegisterConfirmationDialog";
+import RegisterConfirmationDialog from "@/components/RegisterConfirmationDialog";
 
 @Component({
   components: {

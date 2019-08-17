@@ -152,7 +152,7 @@ export default class SignupDialog extends Vue {
     }
   }
 
-  keypress(evt) {
+  keypress(evt: any) {
     if (evt.key === "Enter") {
       this.signup();
     }

@@ -52,7 +52,7 @@
               <div class="error" v-if="passwordValidationError">Please provide your password.</div>
               <small class="forgot-password">
                 Forgot your password?
-                <a href>Reset password</a>
+                <a href="/reset">Reset password</a>
               </small>
             </b-form-group>
           </b-col>

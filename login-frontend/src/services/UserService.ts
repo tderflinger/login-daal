@@ -22,6 +22,7 @@ function status(response: FetchResponse) {
 }
 
 function json(response: any) {
+  console.log('inside json');
   return response.json();
 }
 
@@ -83,6 +84,33 @@ class UserService {
     });
   }
 
+  resetPassword(cred: Credentials) {
+    console.log('In reset password');
+    return new Promise((resolve, reject) => {
+      fetch(`${USER_ENDPOINT}/user/passwordreset`, {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        referrer: 'no-referrer',
+        body: `{ "email": "${cred.email}" }`
+      })
+        .then(status)
+        .then(json)
+        .then(data => {
+          console.log('Password reset succeeded', JSON.stringify(data));
+          resolve(data);
+        })
+        .catch(error => {
+          console.error('[UserService]: Password reset failed', error);
+          reject(error);
+        });
+    });
+  }
+
   loginFacebook(facebookToken: string) {
     console.log('Loggin Facebook in ', facebookToken);
     return new Promise((resolve, reject) => {
@@ -109,32 +137,7 @@ class UserService {
         });
     });
   }
-  /*
-  logout() {
-    console.log('[UserService] logout()')
 
-    return new Promise((resolve, reject) => {
-      try {
-        window.FB.getLoginStatus(response => {
-          console.log('inside getloginstatus!')
-          console.log(response)
-          if (response.status === 'connected') {
-            console.log('user connected', response)
-
-            window.FB.logout(function(response) {
-              console.log('[UserService] Logged out from Facebook!')
-              resolve(response)
-              console.log(response)
-            })
-          }
-        })
-      } catch (err) {}
-
-      localStorage.removeItem('token')
-      resolve(0)
-    })
-  }
-*/
   saveToken(token: string) {
     localStorage.setItem('token', token);
   }
