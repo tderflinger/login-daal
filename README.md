@@ -17,6 +17,8 @@ always returns a success message except for emails err@x.com.
 You can find instructions on how to install and run both of these
 applications in their respective directories.
 
+Read more about Login Daal in my blog: https://www.tderflinger.com/en/login-solution-bootstrapvue
+
 ## Components
 
 The frontend consists of these components:
