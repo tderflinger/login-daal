@@ -42,5 +42,5 @@ The mock consists of this component:
 
 ## Thanks to
 
-- Ulrike Thiel for the screen designs
+- Ulrike Thiel for the screen designs (https://ulrike-thiel.de)
 - PDPics for the image of the lentils
