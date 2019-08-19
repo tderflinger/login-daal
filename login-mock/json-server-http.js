@@ -28,7 +28,7 @@ server.post('/user/authentication', (req, res) => {
 });
 
 /* Facebook login */
-server.get('/authfacebook/:id', (req, res) => {
+server.get('/user/authfacebook/:id', (req, res) => {
   var data = {};
   data.accessToken = 'tesToken';
   res.status(201).json(data);

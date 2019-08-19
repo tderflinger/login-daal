@@ -30,7 +30,7 @@ class UserService {
   constructor() {}
 
   createUser(cred: Credentials) {
-    console.log('In createUser()');
+    console.log(`In createUser() ${USER_ENDPOINT}`);
     return new Promise((resolve, reject) => {
       fetch(`${USER_ENDPOINT}/user/users`, {
         method: 'POST',
@@ -46,7 +46,7 @@ class UserService {
         .then(status)
         .then(json)
         .then(data => {
-          console.log('User registration succeeded', JSON.stringify(data));
+          console.log('User registration succeeded' + JSON.stringify(data));
           resolve(data);
         })
         .catch(function(error) {
