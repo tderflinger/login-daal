@@ -1,8 +1,8 @@
 import { USER_ENDPOINT } from './ConfigService';
 
 class Credentials {
-  email: string = '';
-  password: string = '';
+  public email: string = '';
+  public password: string = '';
 }
 
 interface FetchResponse {
@@ -29,7 +29,7 @@ function json(response: any) {
 class UserService {
   constructor() {}
 
-  createUser(cred: Credentials) {
+  public createUser(cred: Credentials) {
     console.log(`In createUser() ${USER_ENDPOINT}`);
     return new Promise((resolve, reject) => {
       fetch(`${USER_ENDPOINT}/user/users`, {
@@ -38,14 +38,14 @@ class UserService {
         cache: 'no-cache',
         credentials: 'same-origin',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         referrer: 'no-referrer',
-        body: `{ "email": "${cred.email}", "password": "${cred.password}" }`
+        body: `{ "email": "${cred.email}", "password": "${cred.password}" }`,
       })
         .then(status)
         .then(json)
-        .then(data => {
+        .then((data) => {
           console.log('User registration succeeded' + JSON.stringify(data));
           resolve(data);
         })
@@ -56,7 +56,7 @@ class UserService {
     });
   }
 
-  login(cred: Credentials) {
+  public login(cred: Credentials) {
     console.log('Loggin in ', cred);
     return new Promise((resolve, reject) => {
       fetch(`${USER_ENDPOINT}/user/authentication`, {
@@ -65,14 +65,14 @@ class UserService {
         cache: 'no-cache',
         credentials: 'same-origin',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         referrer: 'no-referrer',
-        body: `{ "strategy": "local", "email": "${cred.email}", "password": "${cred.password}" }`
+        body: `{ "strategy": "local", "email": "${cred.email}", "password": "${cred.password}" }`,
       })
         .then(status)
         .then(json)
-        .then(data => {
+        .then((data) => {
           console.log('Request succeeded with JSON response', JSON.stringify(data));
           this.saveToken(data.accessToken);
           resolve(data);
@@ -84,7 +84,7 @@ class UserService {
     });
   }
 
-  resetPassword(cred: Credentials) {
+  public resetPassword(cred: Credentials) {
     console.log('In reset password');
     return new Promise((resolve, reject) => {
       fetch(`${USER_ENDPOINT}/user/passwordreset`, {
@@ -93,25 +93,25 @@ class UserService {
         cache: 'no-cache',
         credentials: 'same-origin',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         referrer: 'no-referrer',
-        body: `{ "email": "${cred.email}" }`
+        body: `{ "email": "${cred.email}" }`,
       })
         .then(status)
         .then(json)
-        .then(data => {
+        .then((data) => {
           console.log('Password reset succeeded', JSON.stringify(data));
           resolve(data);
         })
-        .catch(error => {
+        .catch((error) => {
           console.error('[UserService]: Password reset failed', error);
           reject(error);
         });
     });
   }
 
-  loginFacebook(facebookToken: string) {
+  public loginFacebook(facebookToken: string) {
     console.log('Loggin Facebook in ', facebookToken);
     return new Promise((resolve, reject) => {
       fetch(`${USER_ENDPOINT}/user/authfacebook/xx`, {
@@ -120,13 +120,13 @@ class UserService {
         cache: 'no-cache',
         credentials: 'same-origin',
         headers: {
-          Authorization: facebookToken
+          Authorization: facebookToken,
         },
-        referrer: 'no-referrer'
+        referrer: 'no-referrer',
       })
         .then(status)
         .then(json)
-        .then(data => {
+        .then((data) => {
           console.log('Request succeeded with JSON response', data);
           this.saveToken(data.accessToken);
           resolve(data);
@@ -138,11 +138,11 @@ class UserService {
     });
   }
 
-  saveToken(token: string) {
+  public saveToken(token: string) {
     localStorage.setItem('token', token);
   }
 
-  getToken() {
+  public getToken() {
     return localStorage.getItem('token');
   }
 }

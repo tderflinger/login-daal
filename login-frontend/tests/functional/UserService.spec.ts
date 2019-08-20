@@ -20,7 +20,7 @@ test('test create user - error', () => {
     .then(() => {
       fail('Test fails because promise resolves!');
     })
-    .catch(err => {});
+    .catch((err) => {});
 });
 
 test('test login - success', () => {
@@ -39,7 +39,7 @@ test('test login - error', () => {
     .then(() => {
       fail('Test fails because promise resolves!');
     })
-    .catch(err => {});
+    .catch((err) => {});
 });
 
 test('test reset password - success', () => {
@@ -56,7 +56,7 @@ test('test reset password - error', () => {
     .then(() => {
       fail('Test fails because promise resolves!');
     })
-    .catch(err => {});
+    .catch((err) => {});
 });
 
 test('test login facebook - success', () => {

@@ -5,13 +5,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import SignupDialog from "../components/SignupDialog.vue";
+import { Component, Vue } from 'vue-property-decorator';
+import SignupDialog from '../components/SignupDialog.vue';
 
 @Component({
   components: {
-    SignupDialog
-  }
+    SignupDialog,
+  },
 })
 export default class Signup extends Vue {}
 </script>

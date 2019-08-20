@@ -87,60 +87,65 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { userService, Credentials } from "../services/UserService";
-import { required } from "vuelidate/lib/validators";
+import { Component, Vue } from 'vue-property-decorator';
+import { userService, Credentials } from '../services/UserService';
+import { required } from 'vuelidate/lib/validators';
+
+
+interface ValidityElement extends Element {
+  validity: ValidityState;
+}
 
 @Component
 export default class SignupDialog extends Vue {
-  email: string = "";
-  password: string = "";
-  passwordConfirm: string = "";
-  passwordNotSameError: boolean = false;
-  firstPasswordValidationError: boolean = false;
-  secondPasswordValidationError: boolean = false;
-  emailValidationError: boolean = false;
-  agreeTerms: boolean = false;
+  public email: string = '';
+  public password: string = '';
+  public passwordConfirm: string = '';
+  public passwordNotSameError: boolean = false;
+  public firstPasswordValidationError: boolean = false;
+  public secondPasswordValidationError: boolean = false;
+  public emailValidationError: boolean = false;
+  public agreeTerms: boolean = false;
 
-  validations: Object = {
-    email: { required }
+  public validations: Object = {
+    email: { required },
   };
 
   constructor() {
     super();
 
-    document.body.style.backgroundColor = "white";
+    document.body.style.backgroundColor = 'white';
   }
 
-  emailValidation() {
-    const emailElement = this.$refs.email;
+  public emailValidation() {
+    const emailElement = <ValidityElement>this.$refs.email;
     if (emailElement.validity.valid) {
-      this.emailValidationError = false;
+      this.emailValidationError = false; 
     } else {
-      this.emailValidationError = true;
+      this.emailValidationError = true; 
     }
 
     return !this.emailValidationError;
   }
 
   passwordValidation() {
-    if (this.password === "") {
-      this.firstPasswordValidationError = true;
+    if  (this.password === "") {
+      this.firstPasswordValidationError = true; 
     } else {
-      this.firstPasswordValidationError = false;
+      this.firstPasswordValidationError = false; 
     }
 
     if (this.passwordConfirm === "") {
-      this.secondPasswordValidationError = true;
+      this.secondPasswordValidationError = true; 
     } else {
-      this.secondPasswordValidationError = false;
+      this.secondPasswordValidationError = false; 
     }
 
     if (this.password === this.passwordConfirm) {
-      this.passwordNotSameError = false;
+      this.passwordNotSameError = false; 
       return true;
     } else {
-      this.passwordNotSameError = true;
+      this.passwordNotSameError = true; 
     }
 
     if (
@@ -153,8 +158,8 @@ export default class SignupDialog extends Vue {
   }
 
   keypress(evt: any) {
-    if (evt.key === "Enter") {
-      this.signup();
+    if  (evt.key === "Enter") {
+      this.signup(); 
     }
   }
 
@@ -171,14 +176,15 @@ export default class SignupDialog extends Vue {
       userService
         .createUser(cred)
         .then(() => {
-          this.$router.push("confirm");
+          this.$router.push('confirm');
         })
-        .catch(err => {
-          this.$router.push("regrefused");
-        });
+        .catch((err) => {
+          this.$router.push('regrefused');
+        }); 
     }
   }
 }
+;
 </script>
 
 <style>

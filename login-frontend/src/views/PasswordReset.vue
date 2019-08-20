@@ -5,13 +5,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import PasswordResetDialog from "../components/PasswordResetDialog.vue";
+import { Component, Vue } from 'vue-property-decorator';
+import PasswordResetDialog from '../components/PasswordResetDialog.vue';
 
 @Component({
   components: {
-    PasswordResetDialog
-  }
+    PasswordResetDialog,
+  },
 })
 export default class PasswordReset extends Vue {}
 </script>

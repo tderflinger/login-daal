@@ -11,28 +11,28 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
     },
     {
       path: '/signup',
       // lazy loading, code splitting
-      component: () => import('./views/Signup.vue')
+      component: () => import('./views/Signup.vue'),
     },
     {
       path: '/confirm',
-      component: () => import('./views/Confirmation.vue')
+      component: () => import('./views/Confirmation.vue'),
     },
     {
       path: '/regrefused',
-      component: () => import('./views/RegRefused.vue')
+      component: () => import('./views/RegRefused.vue'),
     },
     {
       path: '/success',
-      component: () => import('./views/SuccessLogin.vue')
+      component: () => import('./views/SuccessLogin.vue'),
     },
     {
       path: '/reset',
-      component: () => import('./views/PasswordReset.vue')
-    }
-  ]
+      component: () => import('./views/PasswordReset.vue'),
+    },
+  ],
 });

@@ -52,7 +52,7 @@
               <div class="error" v-if="passwordValidationError">Please provide your password.</div>
               <small class="forgot-password">
                 Forgot your password?
-                <a href="/reset">Reset password</a>
+                <router-link to="/reset">Reset password</router-link>
               </small>
             </b-form-group>
           </b-col>
@@ -153,8 +153,6 @@ export default {
       }
     },
     emailValidation() {
-      // sets $dirty flag of model
-      this.$v.$touch();
       const emailElement = this.$refs.email;
       if (emailElement.validity.valid) {
         if (this.$v.email.$anyError) {
@@ -169,7 +167,6 @@ export default {
       this.enableDisableLoginButton();
     },
     passwordValidation() {
-      this.$v.$touch();
       const passwordElement = this.$refs.password;
       if (passwordElement.validity.valid) {
         if (this.$v.password.$anyError) {
@@ -191,7 +188,7 @@ export default {
       userService
         .login(cred)
         .then(() => {
-          window.location.assign("/success");
+          this.$router.push("success");
         })
         .catch(error => {
           this.$refs.failureModal.show();

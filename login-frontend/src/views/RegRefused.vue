@@ -5,13 +5,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import RegisterRefusedDialog from "../components/RegisterRefusedDialog.vue";
+import { Component, Vue } from 'vue-property-decorator';
+import RegisterRefusedDialog from '../components/RegisterRefusedDialog.vue';
 
 @Component({
   components: {
-    RegisterRefusedDialog
-  }
+    RegisterRefusedDialog,
+  },
 })
 export default class RegRefused extends Vue {}
 </script>

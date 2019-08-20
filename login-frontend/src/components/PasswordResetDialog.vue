@@ -43,39 +43,43 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { userService, Credentials } from "../services/UserService";
-import { required } from "vuelidate/lib/validators";
+import { Component, Vue } from 'vue-property-decorator';
+import { userService, Credentials } from '../services/UserService';
+import { required } from 'vuelidate/lib/validators';
+
+interface ValidityElement extends Element {
+  validity: ValidityState;
+}
 
 @Component
 export default class PasswordResetDialog extends Vue {
-  email: string = "";
-  emailValidationError: boolean = false;
+  public email: string = '';
+  public emailValidationError: boolean = false;
 
-  validations: Object = {
-    email: { required }
+  public validations: Object = {
+    email: { required },
   };
 
   constructor() {
     super();
 
-    document.body.style.backgroundColor = "white";
+    document.body.style.backgroundColor = 'white';
   }
 
-  emailValidation() {
-    const emailElement = this.$refs.email;
+  public emailValidation() {
+    const emailElement = <ValidityElement>this.$refs.email;
     if (emailElement.validity.valid) {
-      this.emailValidationError = false;
+      this.emailValidationError = false; 
     } else {
-      this.emailValidationError = true;
+      this.emailValidationError = true; 
     }
 
     return !this.emailValidationError;
   }
 
   keypress(evt: any) {
-    if (evt.key === "Enter") {
-      this.reset();
+    if  (evt.key === "Enter") {
+      this.reset(); 
     }
   }
 
@@ -87,14 +91,15 @@ export default class PasswordResetDialog extends Vue {
       userService
         .resetPassword(cred)
         .then(() => {
-          //this.$router.push("confirm");
+          // this.$router.push("confirm");
         })
-        .catch(err => {
-          //this.$router.push("regrefused");
-        });
+        .catch((err) => {
+          // this.$router.push("regrefused");
+        }); 
     }
   }
 }
+;
 </script>
 
 <style>

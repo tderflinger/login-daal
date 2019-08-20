@@ -20,14 +20,19 @@ npm run develop
 npm run build
 ```
 
+Copy the files from /dist to a static provider in the /login folder.
+The root folder is /login.
+
 ### Lints and fixes files
 
 ```
 npm run lint
 ```
 
-### Run your unit tests
+### Run your functional tests
 
 ```
-npm run test:unit
+npm run test:func
 ```
+
+Run the functional tests. You need to start the login-mock server before running the tests.
