@@ -13,7 +13,7 @@ interface FetchResponse {
 }
 
 function status(response: FetchResponse) {
-  console.log('status: ', response.status);
+  console.log('[UserService] status: ', response.status);
   if (response.status >= 200 && response.status < 300) {
     return Promise.resolve(response);
   } else {
@@ -30,7 +30,7 @@ class UserService {
   constructor() {}
 
   public createUser(cred: Credentials) {
-    console.log(`In createUser() ${USER_ENDPOINT}`);
+    console.log(`[UserService] In createUser() ${USER_ENDPOINT}`);
     return new Promise((resolve, reject) => {
       fetch(`${USER_ENDPOINT}/user/users`, {
         method: 'POST',
@@ -46,7 +46,7 @@ class UserService {
         .then(status)
         .then(json)
         .then((data) => {
-          console.log('User registration succeeded' + JSON.stringify(data));
+          console.log('[UserService] User registration succeeded' + JSON.stringify(data));
           resolve(data);
         })
         .catch(function(error) {
@@ -73,19 +73,19 @@ class UserService {
         .then(status)
         .then(json)
         .then((data) => {
-          console.log('Request succeeded with JSON response', JSON.stringify(data));
+          console.log('[UserService] Request succeeded with JSON response', JSON.stringify(data));
           this.saveToken(data.accessToken);
           resolve(data);
         })
         .catch(function(error) {
-          console.error('Request failed', error);
+          console.error('[UserService] Request failed', error);
           reject(error);
         });
     });
   }
 
   public resetPassword(cred: Credentials) {
-    console.log('In reset password');
+    console.log('[UserService] In reset password');
     return new Promise((resolve, reject) => {
       fetch(`${USER_ENDPOINT}/user/passwordreset`, {
         method: 'POST',
@@ -101,7 +101,7 @@ class UserService {
         .then(status)
         .then(json)
         .then((data) => {
-          console.log('Password reset succeeded', JSON.stringify(data));
+          console.log('[UserService] Password reset succeeded', JSON.stringify(data));
           resolve(data);
         })
         .catch((error) => {
@@ -112,7 +112,7 @@ class UserService {
   }
 
   public loginFacebook(facebookToken: string) {
-    console.log('Loggin Facebook in ', facebookToken);
+    console.log('[UserService] Loggin Facebook in ', facebookToken);
     return new Promise((resolve, reject) => {
       fetch(`${USER_ENDPOINT}/user/authfacebook/xx`, {
         method: 'GET',
@@ -127,12 +127,12 @@ class UserService {
         .then(status)
         .then(json)
         .then((data) => {
-          console.log('Request succeeded with JSON response', data);
+          console.log('[UserService] Request succeeded with JSON response', data);
           this.saveToken(data.accessToken);
           resolve(data);
         })
         .catch(function(error) {
-          console.error('[loginFacebook] Request failed', error);
+          console.error('[UserService] Login Facebook Request failed', error);
           reject(error);
         });
     });

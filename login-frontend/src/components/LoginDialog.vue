@@ -114,7 +114,7 @@ export default {
     getUserData() {
       FB.getLoginStatus(response => {
         if (response.status === "connected") {
-          console.log("user connected", response);
+          console.log("[LoginDialog] user connected", response);
 
           // authenticate with user service
           userService
