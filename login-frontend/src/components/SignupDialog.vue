@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="signup-dialog" v-bind:style="{ backgroundColor: 'white'}">
+    <div class="signup-dialog">
       <b-container fluid>
         <p class="discover-text">Your slogan.</p>
       </b-container>
@@ -66,13 +66,14 @@
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <div class="input-group-text check-me">
-                  <input type="checkbox" v-model="agreeTerms" />
+                  <input type="checkbox" v-model="agreeTerms"/>
                 </div>
               </div>
               <p class="form-control">
                 I agree to the
                 <a href="#">terms.</a>
               </p>
+              <div class="error" v-if="notAgreedTermsError">Please agree to the terms if you want to register.</div>
             </div>
           </b-col>
         </b-row>
@@ -91,33 +92,38 @@ import { Component, Vue } from 'vue-property-decorator';
 import { userService, Credentials } from '../services/UserService';
 import { required } from 'vuelidate/lib/validators';
 
-
 interface ValidityElement extends Element {
   validity: ValidityState;
 }
 
-@Component
+@Component( {
+  watch: {
+    // whenever the agree to terms checkbox is deselected, an error message is shown
+    agreeTerms: function() {
+        this.termsValidation();
+    }
+  }
+})
 export default class SignupDialog extends Vue {
-  public email: string = '';
-  public password: string = '';
-  public passwordConfirm: string = '';
-  public passwordNotSameError: boolean = false;
-  public firstPasswordValidationError: boolean = false;
-  public secondPasswordValidationError: boolean = false;
-  public emailValidationError: boolean = false;
-  public agreeTerms: boolean = false;
+  private email: string = '';
+  private password: string = '';
+  private passwordConfirm: string = '';
+  private passwordNotSameError: boolean = false;
+  private firstPasswordValidationError: boolean = false;
+  private secondPasswordValidationError: boolean = false;
+  private emailValidationError: boolean = false;
+  private agreeTerms: boolean = false;
+  private notAgreedTermsError: boolean = false;
 
-  public validations: Object = {
-    email: { required },
+  private validations: Object = {
+    email: { required }
   };
 
   constructor() {
     super();
-
-    document.body.style.backgroundColor = 'white';
   }
 
-  public emailValidation() {
+  private emailValidation() {
     const emailElement = <ValidityElement>this.$refs.email;
     if (emailElement.validity.valid) {
       this.emailValidationError = false; 
@@ -131,12 +137,14 @@ export default class SignupDialog extends Vue {
   passwordValidation() {
     if  (this.password === "") {
       this.firstPasswordValidationError = true; 
+      return false;
     } else {
       this.firstPasswordValidationError = false; 
     }
 
     if (this.passwordConfirm === "") {
       this.secondPasswordValidationError = true; 
+      return false;
     } else {
       this.secondPasswordValidationError = false; 
     }
@@ -157,6 +165,15 @@ export default class SignupDialog extends Vue {
     }
   }
 
+  // whenever the agree to terms checkbox is deselected, an error message is shown
+  termsValidation() {
+    if (this.agreeTerms) {
+      this.notAgreedTermsError = false;
+    } else {
+      this.notAgreedTermsError = true;
+    }
+  }
+
   keypress(evt: any) {
     if  (evt.key === "Enter") {
       this.signup(); 
@@ -167,6 +184,8 @@ export default class SignupDialog extends Vue {
     const cred = new Credentials();
     cred.email = this.email;
     cred.password = this.password;
+
+    this.termsValidation();
 
     if (
       this.agreeTerms &&
