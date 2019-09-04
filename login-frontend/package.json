@@ -6,7 +6,8 @@
     "develop": "vue-cli-service serve --port 8077",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test:func": "vue-cli-service test:unit"
+    "test:func": "vue-cli-service test:unit",
+    "storybook": "start-storybook"
   },
   "dependencies": {
     "@types/vuelidate": "^0.7.5",
@@ -20,6 +21,9 @@
     "vuelidate": "^0.7.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@storybook/preset-typescript": "^1.1.0",
+    "@storybook/vue": "^5.1.11",
     "@types/jest": "^23.1.4",
     "@vue/cli-plugin-babel": "^3.0.1",
     "@vue/cli-plugin-typescript": "^3.0.1",
@@ -27,12 +31,16 @@
     "@vue/cli-service": "^3.0.1",
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-core": "7.0.0-bridge.0",
+    "babel-loader": "^8.0.6",
+    "babel-preset-vue": "^2.0.2",
     "cross-fetch": "^3.0.4",
     "cypress": "^3.4.1",
     "node-sass": "^4.10.0",
+    "react-docgen-typescript-loader": "^3.2.0",
     "sass-loader": "^7.1.0",
     "ts-jest": "^23.0.0",
     "typescript": "^3.4.3",
+    "vue-loader": "^15.7.1",
     "vue-template-compiler": "^2.6.10"
   }
 }
